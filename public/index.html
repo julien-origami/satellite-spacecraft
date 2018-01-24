@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Amiral Space Craft</title>
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <div class="loader">
+      <svg  width="300px" height="320px" viewBox="0 0 300 320" xml:space="preserve">
+          <polygon class="a" fill="#70e6ff" stroke="#70e6ff" stroke-width="2" stroke-miterlimit="10" points="290,0 290,30 280,30 280,0 270,30 280,40
+              270,80 240,70 240,60 220,50 190,50 170,10 130,10 110,50 80,50 60,60 60,70 30,80 20,40 30,30 20,0 20,30 10,30 10,0 0,30 10,40
+              20,100 70,90 40,180 30,190 40,210 40,190 50,190 50,210 60,190 50,180 90,90 110,100 110,130 100,130 80,150 90,160 90,220 30,240
+              40,250 90,240 90,250 80,250 80,280 70,320 90,310 90,280 110,270 110,240 120,220 110,220 120,170 130,200 170,200 180,170
+              190,220 180,220 190,240 190,270 210,280 210,310 230,320 220,280 220,250 210,250 210,240 260,250 270,240 210,220 210,160
+              220,150 200,130 190,130 190,100 210,90 250,180 240,190 250,210 250,190 260,190 260,210 270,190 260,180 230,90 280,100 290,40
+              300,30 "/>
+          <g>
+              <polygon class="b" fill="#FF0000" points="120,30 180,30 170,40 130,40 "/>
+          </g>
+      </svg>
+    </div>
+    <div id="app" />
+    <script src="src/public/bundle.js" type="text/javascript"></script>
+    <script src="https://isuttell.github.io/sine-waves/javascripts/sine-waves.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        setTimeout(() => {
+            var waves = new SineWaves({
+                el: document.getElementById('waves'),
+                speed: 3,
+                width: function() {
+                    return $(window).width();
+                },
+                height: function() {
+                    return $(window).height();
+                },
+                ease: 'SineInOut',
+                wavesWidth: '50%',
+                waves: [{
+                  timeModifier: 4,
+                  lineWidth: 1,
+                  amplitude: -100,
+                  waveLength: 600
+                },
+                {
+                  type: 'SineWave',
+                  segmentLength: 1,
+                },
+                {
+                  timeModifier: 2,
+                  lineWidth: 2,
+                  amplitude: -150,
+                  wavelength: 50
+                },
+                {
+                  timeModifier: 1,
+                  lineWidth: 1,
+                  amplitude: -200,
+                  wavelength: 150
+                },
+                {
+                  timeModifier: 0.5,
+                  lineWidth: 1,
+                  amplitude: -120,
+                  wavelength: 100
+                },
+                {
+                  timeModifier: 0.25,
+                  lineWidth: 2,
+                  amplitude: -75,
+                  wavelength: 400
+                }],
+                resizeEvent: function() {
+                    var gradient = this.ctx.createLinearGradient(0, 0, this.width, 0);
+                    gradient.addColorStop(0,"#70ffdb");
+                    gradient.addColorStop(0.5,"#70e6ff");
+                    gradient.addColorStop(1,"#f3ff70");
+                    var index = -1;
+                    var length = this.waves.length;
+                    for(index=0;index< length;index++){
+                      this.waves[index].strokeStyle = gradient;
+                    }
+                }
+            });
+        }, 7000)
+    </script>
+  </body>
+</html>
